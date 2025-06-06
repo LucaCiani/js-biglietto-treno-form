@@ -1,19 +1,29 @@
-const distance = parseInt(prompt("Quanti Km vuoi percorrere?"));
+const distance = document.getElementById("distance");
 
-const age = parseInt(prompt("Quanti anni hai?"));
+const age = document.querySelector("#age");
+
+const name = document.getElementById("name");
+
+const sendButton = document.getElementById("send");
+
+const resetButton = document.getElementById("reset");
 
 const pricePerKm = 0.21;
 
-const price = pricePerKm * distance;
+const price = pricePerKm * parseInt(distance.value);
 
 let finalPrice;
 
-if (age < 18) {
-    finalPrice = price - price * 0.2;
-} else if (age >= 65) {
-    finalPrice = price - price * 0.4;
-} else {
-    finalPrice = price;
-}
-
-console.log(finalPrice.toFixed(2) + "€");
+sendButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    const price = pricePerKm * parseInt(distance.value);
+    if (age.value == 1) {
+        finalPrice = price - price * 0.2;
+    } else if (age.value == 3) {
+        finalPrice = price - price * 0.4;
+    } else {
+        finalPrice = price;
+    }
+    console.log(finalPrice.toFixed(2));
+    document.getElementById("sendName").innerHTML += name.value;
+});
